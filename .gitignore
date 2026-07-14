@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Uploaded Images
+static/uploads/*
+
+# Keep uploads folder
+!static/uploads/.gitkeep
+
+# Dataset (optional - if too large)
+dataset/
+
+# TensorFlow Logs
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db

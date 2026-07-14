@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Animal Species Prediction Chatbot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="hero">
+
+        <h1>🐾 Animal Species Prediction Chatbot</h1>
+
+        <p>
+            Upload an image and let AI identify the animal.
+            After prediction you can chat with the AI to learn
+            more about that animal.
+        </p>
+
+    </header>
+
+    <!-- ================= Upload Card ================= -->
+
+    <section class="card">
+
+        <h2>Upload Animal Image</h2>
+
+        <div class="upload-container">
+
+            <input
+                id="imageInput"
+                type="file"
+                accept="image/*"
+                hidden>
+
+            <label
+                for="imageInput"
+                class="upload-label">
+
+                📁 Choose Image
+
+            </label>
+
+        </div>
+
+        <div id="previewContainer"
+             class="preview-container hidden">
+
+            <img
+                id="previewImage"
+                alt="Preview">
+
+        </div>
+
+        <div class="center">
+
+            <button
+                id="predictBtn"
+                class="primary-btn"
+                disabled>
+
+                Predict Animal
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Prediction ================= -->
+
+    <section
+        id="predictionSection"
+        class="card hidden">
+
+        <h2>Prediction</h2>
+
+        <div class="prediction-box">
+
+            <div id="animalName"
+                 class="animal-name">
+
+            </div>
+
+        </div>
+
+        <div class="result-image-container">
+
+            <img
+                id="uploadedImage"
+                class="result-image">
+
+        </div>
+
+    </section>
+
+    <!-- ================= Chat ================= -->
+
+    <section
+        id="chatSection"
+        class="card hidden">
+
+        <h2>Animal Chatbot</h2>
+
+        <div
+            id="chatMessages"
+            class="chat-messages">
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                id="questionInput"
+                type="text"
+                placeholder="Ask something about this animal...">
+
+            <button
+                id="sendBtn">
+
+                Send
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Loading ================= -->
+
+    <div
+        id="loading"
+        class="loading hidden">
+
+        <div class="spinner"></div>
+
+        <p>Please wait...</p>
+
+    </div>
+
+    <!-- ================= Error ================= -->
+
+    <div
+        id="errorBox"
+        class="error hidden">
+
+    </div>
+
+    <!-- ================= Reset ================= -->
+
+    <div
+        id="resetContainer"
+        class="center hidden">
+
+        <button
+            id="newImageBtn"
+            class="secondary-btn">
+
+            Upload Another Image
+
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const API = {
+
+    predict: "/predict",
+
+    chat: "/chat"
+
+};
+
+</script>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,527 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    background:#eef3f8;
+
+    color:#333;
+
+    min-height:100vh;
+
+    padding:40px 20px;
+
+}
+
+.container{
+
+    max-width:1000px;
+
+    margin:auto;
+
+}
+
+.hero{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.hero h1{
+
+    color:#1565C0;
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+}
+
+.hero p{
+
+    color:#555;
+
+    font-size:18px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+    color:#1565C0;
+
+    margin-bottom:20px;
+
+}
+
+.upload-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.upload-label{
+
+    display:inline-block;
+
+    padding:14px 30px;
+
+    background:#1976D2;
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:bold;
+
+}
+
+.upload-label:hover{
+
+    background:#0D47A1;
+
+}
+
+.preview-container{
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.preview-container img{
+
+    width:320px;
+
+    max-width:100%;
+
+    border-radius:12px;
+
+    border:3px solid #ddd;
+
+}
+
+.center{
+
+    text-align:center;
+
+}
+
+button{
+
+    cursor:pointer;
+
+    border:none;
+
+    transition:.25s;
+
+    font-size:16px;
+
+}
+
+.primary-btn{
+
+    margin-top:20px;
+
+    background:#1565C0;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+}
+
+.primary-btn:hover{
+
+    background:#0D47A1;
+
+}
+
+.primary-btn:disabled{
+
+    opacity:.5;
+
+    cursor:not-allowed;
+
+}
+
+.secondary-btn{
+
+    background:#43A047;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:10px;
+
+}
+
+.secondary-btn:hover{
+
+    background:#2E7D32;
+
+}
+
+.prediction-box{
+
+    text-align:center;
+
+}
+
+.animal-name{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    color:#1565C0;
+
+    margin-bottom:12px;
+
+}
+
+.result-image-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:25px;
+
+}
+
+.result-image{
+
+    width:350px;
+
+    max-width:100%;
+
+    border-radius:15px;
+
+    border:4px solid #ddd;
+
+}
+
+/* ============================= */
+/* CHAT */
+/* ============================= */
+
+.chat-messages{
+
+    height:420px;
+
+    overflow-y:auto;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    background:#f9fafb;
+
+}
+
+/* scrollbar */
+
+.chat-messages::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.chat-messages::-webkit-scrollbar-thumb{
+
+    background:#bbb;
+
+    border-radius:20px;
+
+}
+
+.message{
+
+    display:flex;
+
+    margin-bottom:18px;
+
+}
+
+.message.user{
+
+    justify-content:flex-end;
+
+}
+
+.message.bot{
+
+    justify-content:flex-start;
+
+}
+
+.bubble{
+
+    max-width:70%;
+
+    padding:14px 18px;
+
+    border-radius:15px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+
+    animation:fadeIn .2s ease-in-out;
+
+}
+
+.user .bubble{
+
+    background:#1976D2;
+
+    color:white;
+
+    border-bottom-right-radius:5px;
+
+}
+
+.bot .bubble{
+
+    background:white;
+
+    border:1px solid #ddd;
+
+    border-bottom-left-radius:5px;
+
+}
+
+.chat-input{
+
+    margin-top:20px;
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.chat-input input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:1px solid #bbb;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.chat-input input:focus{
+
+    border-color:#1565C0;
+
+}
+
+.chat-input button{
+
+    background:#1565C0;
+
+    color:white;
+
+    padding:14px 25px;
+
+    border-radius:10px;
+
+}
+
+.chat-input button:hover{
+
+    background:#0D47A1;
+
+}
+
+.loading{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.85);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.spinner{
+
+    width:60px;
+
+    height:60px;
+
+    border:7px solid #ddd;
+
+    border-top:7px solid #1565C0;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin-bottom:20px;
+
+}
+
+.error{
+
+    margin-top:20px;
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    border-left:5px solid #d32f2f;
+
+    padding:15px;
+
+    border-radius:10px;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+/* ============================= */
+/* ANIMATIONS */
+/* ============================= */
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@media(max-width:768px){
+
+    body{
+
+        padding:20px 10px;
+
+    }
+
+    .hero h1{
+
+        font-size:30px;
+
+    }
+
+    .hero p{
+
+        font-size:16px;
+
+    }
+
+    .chat-input{
+
+        flex-direction:column;
+
+    }
+
+    .chat-input button{
+
+        width:100%;
+
+    }
+
+    .bubble{
+
+        max-width:90%;
+
+    }
+
+    .animal-name{
+
+        font-size:28px;
+
+    }
+
+    .preview-container img,
+    .result-image{
+
+        width:100%;
+
+    }
+
+}
