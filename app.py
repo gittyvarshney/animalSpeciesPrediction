@@ -11,7 +11,11 @@ app = Flask(__name__)
 
 # Configuration
 
-UPLOAD_FOLDER = os.path.join("static", "uploads")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
 
 ALLOWED_EXTENSIONS = {
     "png",
@@ -19,10 +23,6 @@ ALLOWED_EXTENSIONS = {
     "jpeg",
     "webp"
 }
-
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
 # ==========================================
@@ -91,11 +91,6 @@ def predict():
     file.save(filepath)
 
     try:
-
-        # predict.py should return:
-        #
-        # species
-        #
         species = predict_species(filepath)
 
     except Exception as e:
@@ -107,6 +102,10 @@ def predict():
             "message": str(e)
 
         }), 500
+    
+    finally:
+        if os.path.exists(filepath):
+            os.remove(filepath)
 
     return jsonify({
 
@@ -168,9 +167,4 @@ def chat():
 # ==========================================
 
 if __name__ == "__main__":
-
-    app.run(
-        host="127.0.0.1",
-        port=5000,
-        debug=True
-    )
+    app.run(host="0.0.0.0", port=5000)

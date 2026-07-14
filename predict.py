@@ -1,8 +1,14 @@
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from pathlib import Path
+import os
 
-model = load_model("model/animal_model.keras")
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = os.path.join(BASE_DIR, "model", "animal_model.keras")
+model = load_model(MODEL_PATH)
+
+# model = load_model("model/animal_model.keras")
 
 classes = [
     "Butterfly",
@@ -27,7 +33,7 @@ def predict_species(img_path):
 
     img = img / 255.0
 
-    prediction = model.predict(img)
+    prediction = model.predict(img, verbose=0)
 
     index = np.argmax(prediction)
 
