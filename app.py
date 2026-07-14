@@ -157,6 +157,22 @@ def chat():
 
     })
 
+@app.route("/admin/clear_uploads")
+def clear_uploads():
+    upload_folder = app.config["UPLOAD_FOLDER"]
+
+    deleted = 0
+
+    for filename in os.listdir(upload_folder):
+        filepath = os.path.join(upload_folder, filename)
+
+        if os.path.isfile(filepath):
+            os.remove(filepath)
+            deleted += 1
+
+    return jsonify({
+        "message": f"{deleted} files deleted."
+    })
 
 # ==========================================
 # Run
